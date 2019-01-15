@@ -1,0 +1,9 @@
+data/
+*.svm
+*.tsv
+derby.log
+metastore_db/
+project/
+target/
+*.log
+
