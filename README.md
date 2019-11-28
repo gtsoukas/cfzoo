@@ -1,6 +1,6 @@
 # Benchmarking of Collaborative Filtering Implementations
 
- Weighted Regularized Matrix Factorization (WRMF) is used to compress sparse matrices e.g. for [recommender systems](http://yifanhu.net/PUB/cf.pdf). cfzoo is an attempt to compare different implementations of WRMF by goodness of fit and other metrics that matter in practice.
+ Weighted Regularized Matrix Factorization (WRMF) is used to compress sparse matrices e.g. for [recommender systems](http://yifanhu.net/PUB/cf.pdf). cfzoo is an attempt to compare different implementations of WRMF by goodness of fit and compute resource requirements.
 
 
 ## MovieLens dataset w/o hyperparameter tuning
@@ -47,7 +47,7 @@ tf       | 360K |      52        |   23          | 91.24
 ## Tools
 * pop -- Popular items
 * implicit -- [Ben Fredericksons implicit package 0.3.8 (Python)](https://github.com/benfred/implicit)
-* spark -- [Apache Spark 2.4.0 MLlib ALS (JVM)](http://spark.apache.org/)
+* spark -- [Apache Spark 2.4.4 MLlib ALS (JVM)](http://spark.apache.org/)
 * tf -- [Google TensorFlow](https://www.tensorflow.org/api_docs/python/tf/contrib/factorization/WALSModel)
 
 
@@ -67,6 +67,19 @@ The input dataset is split into three datasets:
 
 
 ## Run
+All requirements can be installed with the supplied docker file:
+```
+docker build --rm --tag cfzoo .
+
+docker run \
+  -t \
+  -i \
+  -v ${PWD}:/cfzoo \
+  --rm \
+  cfzoo
+
+```
+
 Once all required dependencies are installed, do:
 ```
 ./movielens.sh > $(date +%Y%m%d%H%M%S)_movielens.log 2>&1
