@@ -32,7 +32,7 @@ object WRMF {
     val TRAIN_FILE = args(0)  // "data/lastfm/train.svm"
     val TEST_FILE = args(1)   //"data/lastfm/test.svm"
     val NEGATIVES_FILE = args(2) //"data/lastfm/negatives.svm"
-    val RANGINGS_FILE = args(3) //"data/lastfm/ranking_sparkml"
+    val RANKINGS_FILE = args(3) //"data/lastfm/ranking_sparkml"
 
     def parseLibSVM(d:RDD[String]):RDD[Rating] =
       d.flatMap(r => {
@@ -71,7 +71,7 @@ object WRMF {
     val model = als.fit(train)
     println("... took " + (System.currentTimeMillis() - t1) / 1000.0 + " s")
 
-    println("writing rankings to single file " + RANGINGS_FILE)
+    println("writing rankings to single file " + RANKINGS_FILE)
     val t2 = System.currentTimeMillis()
     val d0 = test.union(negatives)
     // model.setColdStartStrategy("nan")
@@ -90,7 +90,7 @@ object WRMF {
         .map(x => x._1.toString + ", [" + x._2.toList.sortBy(-_._2).mkString(", ") + "]")
 
     // Dont't do this for large datasets
-    val rankings_file = new File(RANGINGS_FILE)
+    val rankings_file = new File(RANKINGS_FILE)
     val bw = new BufferedWriter(new FileWriter(rankings_file))
     d2.collect.foreach(x => {
       bw.write(x)

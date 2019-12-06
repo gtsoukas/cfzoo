@@ -3,7 +3,6 @@
 #   * Speed up negative sampling.
 #   * How to handle items that do not get sampled in the test data?
 #     This may affect a large fraction of the items.
-#   * display some stats. e.g. num of items not in test set.
 
 import argparse
 import logging

@@ -60,7 +60,7 @@ for user in range(n_users):
         p = list(test[user].nonzero()[1])[0]
         scores[user] = 1.0 if p in r else 0.0
     else:
-        logging.warn(
+        logging.warning(
             "missing user %d in ranking file %s", user, args.ranking)
 
 logging.info("HR@10: {:4.2f}%".format(100*scores.mean()))

@@ -30,7 +30,6 @@ RUN mkdir -p sw \
   && cd sw \
   && wget https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz \
   && tar xf sbt-${SBT_VERSION}.tgz
-  # && export PATH=/sw/sbt/bin/:${PATH} \
   # native linalg support for Apache Spark
   #  && apt-get -y install libgfortran3 libatlas3-base libopenblas-base libatlas-base-dev
   #&& cd /usr/lib/ \
