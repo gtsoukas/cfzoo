@@ -1,10 +1,12 @@
 # Benchmarking of Collaborative Filtering Implementations
 
- Weighted Regularized Matrix Factorization (WRMF) is used to compress sparse matrices e.g. for [recommender systems](http://yifanhu.net/PUB/cf.pdf). cfzoo is an attempt to compare different implementations of WRMF by goodness of fit and compute resource requirements.
+ Weighted Regularized Matrix Factorization (WRMF) is used to compress sparse matrices e.g. for [recommender systems](http://yifanhu.net/PUB/cf.pdf). cfzoo is an attempt to compare different implementations of WRMF and other collaborative filtering methods by goodness of fit and compute resource requirements.
 
 
 ## MovieLens dataset w/o hyperparameter tuning
-This dataset comes from [grouplens.org](https://grouplens.org/datasets/movielens/). The following WRMF (hyper)parameters are used where applicable:
+This dataset comes from [grouplens.org](https://grouplens.org/datasets/movielens/).
+
+The following WRMF (hyper)parameters are used where applicable:
 * Number of user/item factors: 32
 * Regularization: 0.0
 * Maximum number of iterations: 3
@@ -30,11 +32,16 @@ tf       | 100K |      0         |   n.a.      | 79.11
 .        | 1M   |      2         |   n.a.      | 79.88
 .        | 10M  |      27        |   n.a.      | 90.67
 .        | 20M  |      56        |   n.a.      | 94.33
+lightfm  | 100K |      2         |   n.a.      | 82.08
+.        | 1M   |      16        |   n.a.      | 81.24
+.        | 10M  |      158       |   n.a.      | 94.07
+.        | 20M  |      257       |   n.a.      | 97.95
 
 
 ## Last.fm dataset w/o hyperparameter tuning
 The dataset comes from www.last.fm and was compiled by [Òscar Celma](http://ocelma.net/MusicRecommendationDataset/lastfm-360K.html).
-Parameters are the same as for the non-tuned MovieLens fit.
+
+WRMF Parameters are the same as for the non-tuned MovieLens fit.
 
 Tool     | *n*  | Net Time (sec) | ~ Memory (MB) | HR@10 (%)
 ---------|------|----------------|---------------|--------
@@ -42,6 +49,7 @@ pop      | 360K |      22        |   1           | 88.26
 implicit | 360K |      17        |   2           | 91.75
 spark    | 360K |      26        |   60          | 93.00
 tf       | 360K |      52        |   23          | 91.24
+lightfm  | 360K |      264       |   4           | 97.95
 
 
 ## Tools
@@ -49,6 +57,7 @@ tf       | 360K |      52        |   23          | 91.24
 * implicit -- [Ben Fredericksons implicit package 0.3.8 (Python)](https://github.com/benfred/implicit)
 * spark -- [Apache Spark 2.4.4 MLlib ALS (JVM)](http://spark.apache.org/)
 * tf -- [Google TensorFlow](https://www.tensorflow.org/api_docs/python/tf/contrib/factorization/WALSModel)
+* lightfm -- [LightFM (Python)](https://github.com/lyst/lightfm)
 
 
 ## Evaluation protocol

@@ -42,6 +42,8 @@ time spark-submit \
 
 time python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf
 
+time python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -50,6 +52,8 @@ echo "sparkml:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_sparkml
 echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
+echo "lyst_lightfm:"
+python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
 
 cd ../..
 
@@ -82,6 +86,8 @@ time spark-submit \
 
 time python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf
 
+time python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -90,6 +96,8 @@ echo "sparkml:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_sparkml
 echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
+echo "lyst_lightfm:"
+python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
 
 cd ../..
 
@@ -122,6 +130,8 @@ time spark-submit \
 
 time python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf
 
+time python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -130,6 +140,8 @@ echo "sparkml:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_sparkml
 echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
+echo "lyst_lightfm:"
+python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
 
 cd ../..
 
@@ -163,6 +175,8 @@ time spark-submit \
 
 time python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf
 
+time python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -171,5 +185,7 @@ echo "sparkml:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_sparkml
 echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
+echo "lyst_lightfm:"
+python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
 
 cd ../..

@@ -13,7 +13,7 @@ from sklearn.datasets import load_svmlight_file
 
 DATA_TYPE = np.float32
 RANK = 32
-N_ITER = 10
+N_ITER = 30
 
 parser = argparse.ArgumentParser(
     description='Fit and predict with LightFM.')
@@ -39,13 +39,13 @@ logging.debug("Loading data took %0.2fs", time.time() - start)
 
 model = LightFM(
     no_components=RANK,
-    learning_rate=0.05,
-    loss='bpr'
+    #learning_rate=0.05,
+    loss='warp'
     )
 
 logging.debug("Learning model")
 start = time.time()
-model.fit(train, epochs=N_ITER)
+model.fit(train, epochs=N_ITER, num_threads=32)
 logging.debug("Learning model took %0.2fs", time.time() - start)
 
 test_precision = precision_at_k(model, test, k=5).mean()
