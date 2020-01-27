@@ -39,14 +39,19 @@ tar xvzf lastfm-dataset-360K.tar.gz
 python ${PY_DIR}/dataprep.py lastfm-dataset-360K/usersha1-artmbid-artname-plays.tsv
 
 log_pidstad_cmd "python ${PY_DIR}/popular.py train.svm test.svm negatives.svm ranking_popular" popular_pidstat.log
+python ${PY_DIR}/parse_pidstat_file.py popular_pidstat.log
 
 log_pidstad_cmd "python ${PY_DIR}/benfred_implicit.py train.svm test.svm negatives.svm ranking_benfred_implicit" benferid_implicit_pidstat.log
+python ${PY_DIR}/parse_pidstat_file.py benferid_implicit_pidstat.log
 
-log_pidstad_cmd "spark-submit --class WRMF --driver-memory 16g ${SPARK_JAR} train.svm test.svm negatives.svm ranking_sparkml" spark_pidstat.log >> sparkml.log
+log_pidstad_cmd "spark-submit --class WRMF --driver-memory 16g ${SPARK_JAR} train.svm test.svm negatives.svm ranking_sparkml" spark_pidstat.log
+python ${PY_DIR}/parse_pidstat_file.py spark_pidstat.log
 
 log_pidstad_cmd "python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf" google_tf_pidstat.log
+python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
+python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
 
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
