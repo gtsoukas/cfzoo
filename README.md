@@ -43,13 +43,13 @@ The dataset comes from www.last.fm and was compiled by [Òscar Celma](http://oce
 
 WRMF Parameters are the same as for the non-tuned MovieLens fit.
 
-Tool     | *n*  | Net Time (sec) | ~ Memory (GiB) | HR@10 (%)
----------|------|----------------|----------------|--------
-pop      | 360K |      24        |   1.1          | 88.26
-implicit | 360K |      20        |   2.2          | 91.75
-spark    | 360K |      46        |   59.7         | 93.00
-tf       | 360K |      58        |   36.2         | 91.24
-lightfm  | 360K |      275       |   3.7          | 97.95
+Tool     | *n*  | Net Time (sec) | ~ Memory (GiB) | HR@10 (%), 95% CI
+---------|------|----------------|----------------|------------------------
+pop      | 360K |      24        |   1.1          | 88.24, (88.14, 88.35)
+implicit | 360K |      20        |   2.2          | 91.71, (91.62, 91.80)
+spark    | 360K |      46        |   59.7         | 93.02, (92.93, 93.10)
+tf       | 360K |      58        |   36.2         | 91.45, (91.36, 91.54)
+lightfm  | 360K |      275       |   3.7          | 97.96, (97.92, 98.01)
 
 
 ## Tools

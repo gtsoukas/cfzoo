@@ -1,13 +1,15 @@
-# TODOs:
-#   * Write evaluation report to file.
 
 import argparse
 import logging
 import numpy as np
 import time
+
+from scipy.stats import bayes_mvs
 from sklearn.datasets import load_svmlight_file
 
-DATA_TYPE=np.float32
+DATA_TYPE = np.float32
+
+CI_ALPHA = .95
 
 def parse_list_of_tuples(s):
     tuples = s.strip('[]').split('), ')
@@ -63,5 +65,10 @@ for user in range(n_users):
         logging.warning(
             "missing user %d in ranking file %s", user, args.ranking)
 
-logging.info("HR@10: {:4.2f}%".format(100*scores.mean()))
+logging.debug("Calculating bayesian confidence interval for mean")
+hr_stats = bayes_mvs(scores, CI_ALPHA)[0]
+
+logging.info(
+    "HR@10[%] (center, (lower, upper of {:2.0f}% CI)): {:4.2f}%, ({:4.2f}%, {:4.2f}%)".format(
+    100*CI_ALPHA, 100*hr_stats[0], 100*hr_stats[1][0], 100*hr_stats[1][1]))
 logging.debug("Evaluating rankings took %0.2fs", time.time() - start)
