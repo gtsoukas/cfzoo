@@ -14,28 +14,28 @@ The following WRMF (hyper)parameters are used where applicable:
 * Precision: Float 32
 * System: 144 cores, 1TB RAM
 
-Tool     | *n*  | Net Time (sec) | Memory (GiB) | HR@10 (%)
----------|------|----------------|--------------|--------
-pop      | 100K |      0         |   n.a.       | 56.73
-.        | 1M   |      1         |   n.a.       | 55.58
-.        | 10M  |      7         |   n.a.       | 80.74
-.        | 20M  |      14        |   n.a.       | 91.85
-implicit | 100K |      0         |   n.a.       | 81.55
-.        | 1M   |      0         |   n.a.       | 80.07
-.        | 10M  |      6         |   n.a.       | 90.68
-.        | 20M  |      15        |   n.a.       | 94.60
-spark    | 100K |      3         |   n.a.       | 81.34
-.        | 1M   |      4         |   n.a.       | 80.84
-.        | 10M  |      4         |   n.a.       | 91.57
-.        | 20M  |      22        |   n.a.       | 95.44
-tf       | 100K |      0         |   n.a.       | 79.11
-.        | 1M   |      2         |   n.a.       | 79.88
-.        | 10M  |      27        |   n.a.       | 90.67
-.        | 20M  |      56        |   n.a.       | 94.33
-lightfm  | 100K |      2         |   n.a.       | 82.08
-.        | 1M   |      16        |   n.a.       | 81.24
-.        | 10M  |      158       |   n.a.       | 94.07
-.        | 20M  |      257       |   n.a.       | 97.95
+Tool     | *n*  | Net Time (sec) | Memory (GiB) | HR@10 (%), 95% CI
+---------|------|----------------|--------------|------------------------
+pop      | 100K |      0         |   n.a.       | 55.04, (51.86, 58.22)
+.        | 1M   |      1         |   0.1        | 55.98, (54.72, 57.23)
+.        | 10M  |      7         |   0.3        | 80.45, (80.15, 80.74)
+.        | 20M  |      14        |   0.4        | 91.66, (91.52, 91.81)
+implicit | 100K |      0         |   n.a.       | 79.85, (77.29, 82.42)
+.        | 1M   |      0         |   0.1        | 78.76, (77.73, 79.79)
+.        | 10M  |      6         |   0.4        | 90.72, (90.50, 90.93)
+.        | 20M  |      15        |   0.7        | 94.43, (94.31, 94.55)
+spark    | 100K |      3         |   6.5        | 80.28, (77.73, 82.82)
+.        | 1M   |      4         |   7.8        | 80.12, (79.11, 81.12)
+.        | 10M  |      4         |   10.4       | 91.73, (91.52, 91.93)
+.        | 20M  |      22        |   12.3       | 95.38, (95.27, 95.49)
+tf       | 100K |      0         |   0.5        | 78.37, (75.73, 81.00)
+.        | 1M   |      2         |   0.6        | 78.56, (77.52, 79.59)
+.        | 10M  |      27        |   2.3        | 90.82, (90.60, 91.03)
+.        | 20M  |      56        |   4.2        | 94.39, (94.27, 94.51)
+lightfm  | 100K |      2         |   0.1        | 81.12, (78.62, 83.63)
+.        | 1M   |      16        |   0.1        | 80.61, (79.62, 81.61)
+.        | 10M  |      158       |   0.5        | 94.03, (93.85, 94.20)
+.        | 20M  |      257       |   0.8        | 97.94, (97.87, 98.02)
 
 
 ## Last.fm dataset w/o hyperparameter tuning
@@ -43,13 +43,13 @@ The dataset comes from www.last.fm and was compiled by [Òscar Celma](http://oce
 
 WRMF Parameters are the same as for the non-tuned MovieLens fit.
 
-Tool     | *n*  | Net Time (sec) | ~ Memory (GiB) | HR@10 (%), 95% CI
+Tool     | *n*  | Net Time (sec) |   Memory (GiB) | HR@10 (%), 95% CI
 ---------|------|----------------|----------------|------------------------
-pop      | 360K |      24        |   1.1          | 88.24, (88.14, 88.35)
-implicit | 360K |      20        |   2.2          | 91.71, (91.62, 91.80)
-spark    | 360K |      46        |   59.7         | 93.02, (92.93, 93.10)
-tf       | 360K |      58        |   36.2         | 91.45, (91.36, 91.54)
-lightfm  | 360K |      275       |   3.7          | 97.96, (97.92, 98.01)
+pop      | 360K |      24        |   0.7          | 88.24, (88.14, 88.35)
+implicit | 360K |      20        |   1.0          | 91.71, (91.62, 91.80)
+spark    | 360K |      46        |   16.2         | 93.02, (92.93, 93.10)
+tf       | 360K |      58        |   3.8          | 91.45, (91.36, 91.54)
+lightfm  | 360K |      275       |   1.1          | 97.96, (97.92, 98.01)
 
 
 ## Tools
@@ -72,7 +72,7 @@ The input dataset is split into three datasets:
 
 *Net Time* is the real time used for parameter learning without any data loading, preprocessing or postprocessing.
 
-*Memory* is the *virtual memory size* measured via pidstst during model learning and gives a rough approximation of peak memory usage at best.
+*Memory* is the *non-swapped physical memory* (RSS) measured via pidstst during model learning and gives a rough approximation of peak memory usage at best.
 
 
 ## Run
