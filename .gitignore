@@ -6,4 +6,5 @@ metastore_db/
 project/
 target/
 *.log
+__pycache__
 

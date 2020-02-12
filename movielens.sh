@@ -52,6 +52,8 @@ python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
 
+python ${PY_DIR}/ncf/ncf.py train.svm test.svm negatives.svm ranking_ncf --model=GMF --batch_size=256 --lr=0.001 --factor_num=32 --epochs=20
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -62,6 +64,8 @@ echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
 echo "lyst_lightfm:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
+echo "ncf:"
+python ${PY_DIR}/evaluator.py train.svm test.svm ranking_ncf
 
 cd ../..
 
@@ -93,6 +97,8 @@ python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
 
+# python ${PY_DIR}/ncf/ncf.py train.svm test.svm negatives.svm ranking_ncf --model=GMF --batch_size=256 --lr=0.001 --factor_num=32 --epochs=20
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -103,6 +109,8 @@ echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
 echo "lyst_lightfm:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
+# echo "ncf:"
+# python ${PY_DIR}/evaluator.py train.svm test.svm ranking_ncf
 
 cd ../..
 
@@ -134,6 +142,8 @@ python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
 
+# python ${PY_DIR}/ncf/ncf.py train.svm test.svm negatives.svm ranking_ncf --model=GMF --batch_size=256 --lr=0.001 --factor_num=32 --epochs=20
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -144,6 +154,8 @@ echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
 echo "lyst_lightfm:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
+# echo "ncf:"
+# python ${PY_DIR}/evaluator.py train.svm test.svm ranking_ncf
 
 cd ../..
 
@@ -176,6 +188,8 @@ python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
 
+# python ${PY_DIR}/ncf/ncf.py train.svm test.svm negatives.svm ranking_ncf --model=GMF --batch_size=256 --lr=0.001 --factor_num=32 --epochs=20
+
 echo "popular:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_popular
 echo "benferid_implicit:"
@@ -186,5 +200,7 @@ echo "google_tf:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
 echo "lyst_lightfm:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
+# echo "ncf:"
+# python ${PY_DIR}/evaluator.py train.svm test.svm ranking_ncf
 
 cd ../..

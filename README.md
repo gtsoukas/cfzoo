@@ -12,9 +12,9 @@ The following WRMF (hyper)parameters are used where applicable:
 * Maximum number of iterations: 3
 * Weight (alpha): 1
 * Precision: Float 32
-* System: 144 cores, 1TB RAM
+* System: 144 cores, 1TB RAM, CPU only
 
-Tool     | *n*  | Net Time (sec) | Memory (GiB) | HR@10 (%), 95% CI
+Method   | *n*  | Net Time (sec) | Memory (GiB) | HR@10 (%), 95% CI
 ---------|------|----------------|--------------|------------------------
 pop      | 100K |      0         |   n.a.       | 55.04, (51.86, 58.22)
 .        | 1M   |      1         |   0.1        | 55.98, (54.72, 57.23)
@@ -36,6 +36,10 @@ lightfm  | 100K |      2         |   0.1        | 81.12, (78.62, 83.63)
 .        | 1M   |      16        |   0.1        | 80.61, (79.62, 81.61)
 .        | 10M  |      158       |   0.5        | 94.03, (93.85, 94.20)
 .        | 20M  |      257       |   0.8        | 97.94, (97.87, 98.02)
+ncf      | 100K |      457       |   n.a.       | 82.18, (79.74, 84.63)
+.        | 1M   |      9004      |   n.a.       | 83.06, (82.12, 84.01)
+.        | 10M  |      450263    |   n.a.       | 92.29, (92.09, 92.48)
+.        | 20M  |      n.a       |   n.a.       | n.a.
 
 
 ## Last.fm dataset w/o hyperparameter tuning
@@ -43,7 +47,7 @@ The dataset comes from www.last.fm and was compiled by [Òscar Celma](http://oce
 
 WRMF Parameters are the same as for the non-tuned MovieLens fit.
 
-Tool     | *n*  | Net Time (sec) |   Memory (GiB) | HR@10 (%), 95% CI
+Method   | *n*  | Net Time (sec) |   Memory (GiB) | HR@10 (%), 95% CI
 ---------|------|----------------|----------------|------------------------
 pop      | 360K |      24        |   0.7          | 88.24, (88.14, 88.35)
 implicit | 360K |      20        |   1.0          | 91.71, (91.62, 91.80)
@@ -52,12 +56,13 @@ tf       | 360K |      58        |   3.8          | 91.45, (91.36, 91.54)
 lightfm  | 360K |      275       |   1.1          | 97.96, (97.92, 98.01)
 
 
-## Tools
+## Methods
 * pop -- Popular items
 * implicit -- [Ben Fredericksons implicit package 0.3.8 (Python)](https://github.com/benfred/implicit)
 * spark -- [Apache Spark 2.4.4 MLlib ALS (JVM)](http://spark.apache.org/)
 * tf -- [Google TensorFlow](https://www.tensorflow.org/api_docs/python/tf/contrib/factorization/WALSModel)
 * lightfm -- [LightFM (Python)](https://github.com/lyst/lightfm)
+* ncf -- Neural Collaborative Filtering (Python) [Paper](https://github.com/guoyang9/NCF), [Torch implementation](https://www.comp.nus.edu.sg/~xiangnan/papers/ncf.pdf). GMF version of model is trained for 20 epochs.
 
 
 ## Evaluation protocol
