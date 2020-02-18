@@ -35,7 +35,7 @@ mkdir -p ${DATA_DIR}
 cd ${DATA_DIR}
 wget --quiet http://files.grouplens.org/datasets/movielens/${DATASET}.zip
 unzip ${DATASET}.zip
-python ${PY_DIR}/dataprep.py ${DATASET}/u.data
+python ${PY_DIR}/sampler.py ${DATASET}/u.data
 
 log_pidstad_cmd "python ${PY_DIR}/popular.py train.svm test.svm negatives.svm ranking_popular" popular_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py popular_pidstat.log
@@ -80,7 +80,7 @@ cd ${DATA_DIR}
 wget --quiet http://files.grouplens.org/datasets/movielens/${DATASET}.zip
 unzip ${DATASET}.zip
 
-python ${PY_DIR}/dataprep.py ${DATASET}/ratings.dat --separator "::"
+python ${PY_DIR}/sampler.py ${DATASET}/ratings.dat --separator "::"
 
 log_pidstad_cmd "python ${PY_DIR}/popular.py train.svm test.svm negatives.svm ranking_popular" popular_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py popular_pidstat.log
@@ -125,7 +125,7 @@ cd ${DATA_DIR}
 wget --quiet http://files.grouplens.org/datasets/movielens/${DATASET}.zip
 unzip ${DATASET}.zip
 
-python ${PY_DIR}/dataprep.py ml-10M100K/ratings.dat --separator "::"
+python ${PY_DIR}/sampler.py ml-10M100K/ratings.dat --separator "::"
 
 log_pidstad_cmd "python ${PY_DIR}/popular.py train.svm test.svm negatives.svm ranking_popular" popular_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py popular_pidstat.log
@@ -171,7 +171,7 @@ cd ${DATA_DIR}
 wget --quiet http://files.grouplens.org/datasets/movielens/${DATASET}.zip
 unzip ${DATASET}.zip
 
-python ${PY_DIR}/dataprep.py ${DATASET}/ratings.csv --separator "," --skip-headers
+python ${PY_DIR}/sampler.py ${DATASET}/ratings.csv --separator "," --skip-headers
 
 log_pidstad_cmd "python ${PY_DIR}/popular.py train.svm test.svm negatives.svm ranking_popular" popular_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py popular_pidstat.log

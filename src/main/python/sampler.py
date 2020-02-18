@@ -3,6 +3,7 @@
 #   * Speed up negative sampling.
 #   * How to handle items that do not get sampled in the test data?
 #     This may affect a large fraction of the items.
+#   * Maybe, sample separate negatives set for validation data.
 
 import argparse
 import logging
@@ -15,6 +16,7 @@ from sklearn.datasets import dump_svmlight_file
 
 TRAIN_FILE = 'train.svm'
 TEST_FILE = 'test.svm'
+VALID_FILE = 'valid.svm'
 NEGATIVES_FILE = 'negatives.svm'
 NUM_NEGATIVES = 99
 
@@ -23,11 +25,19 @@ parser.add_argument('inputfile',
     help='One line per interaction where the first column is a userid and the '
         + 'second column is an itemid. Each user-item combination must apear'
         + ' only once.')
-parser.add_argument('--separator', default='\t')
-parser.add_argument('--encoding', default='UTF-8', help='Inputfile encoding.')
-parser.add_argument('--skip-headers', dest='headers', action='store_true',
-    help='If flag is present, the first line of the inputfile is skipped.')
-parser.set_defaults(headers=False)
+parser.add_argument('--separator'
+    , default='\t')
+parser.add_argument('--encoding'
+    , default='UTF-8'
+    , help='Inputfile encoding.')
+parser.add_argument('--skip-headers'
+    , dest='headers'
+    , action='store_true'
+    , help='If flag is present, the first line of the inputfile is skipped.'
+    , default=False)
+parser.add_argument('--validation-set'
+    , type=bool
+    , dest='validation_set')
 #parser.add_argument('--max_sparsity', default=0.99)
 #parser.add_argument('--seed', default=12345)
 args = parser.parse_args()
@@ -150,6 +160,12 @@ start = time.time()
 train, test = one_split(likes)
 logging.debug("Splitting off test data took %0.2fs", time.time() - start)
 
+if args.validation_set:
+    logging.debug("Splitting off validation data")
+    start = time.time()
+    train, valid = one_split(train)
+    logging.debug("Splitting off validation data took %0.2fs", time.time() - start)
+
 test_item_scores = np.sum(test, 0).A1
 num_items_test = len(test_item_scores.nonzero()[0])
 logging.info("Share of items not in test set: %4.3f"
@@ -165,6 +181,12 @@ logging.debug("Writing testing data to file %s", TEST_FILE)
 start = time.time()
 dump_svmlight_file(X=test, y=list(range(n_users)), f=TEST_FILE)
 logging.debug("Writing testing data took %0.2fs", time.time() - start)
+
+if args.validation_set:
+    logging.debug("Writing validation data to file %s", VALID_FILE)
+    start = time.time()
+    dump_svmlight_file(X=valid, y=list(range(n_users)), f=VALID_FILE)
+    logging.debug("Writing testing data took %0.2fs", time.time() - start)
 
 # TODO: rating=1 is not true for negatives, but does not hurt here.
 logging.debug("Writing negatives data to file %s", NEGATIVES_FILE)

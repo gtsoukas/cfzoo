@@ -42,6 +42,16 @@ ncf      | 100K |      457       |   n.a.       | 82.18, (79.74, 84.63)
 .        | 20M  |      n.a       |   n.a.       | n.a.
 
 
+## MovieLens dataset w/ hyperparameter tuning
+Method   | *n*  | Net Time (sec) | Memory (GiB) | HR@10 (%), 95% CI
+---------|------|----------------|--------------|------------------------
+implicit | 100K |      n.a.      |   0.09       | 79.96, (77.40, 82.52)
+.        | 1M   |      n.a.      |   0.15       | 81.90, (80.93, 82.87)
+.        | 10M  |      n.a.      |   0.60       | 92.55, (92.36, 92.75)
+.        | 20M  |      n.a.      |   1.13       | 96.52, (96.42, 96.62)
+
+
+
 ## Last.fm dataset w/o hyperparameter tuning
 The dataset comes from www.last.fm and was compiled by [Òscar Celma](http://ocelma.net/MusicRecommendationDataset/lastfm-360K.html).
 
