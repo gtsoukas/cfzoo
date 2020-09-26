@@ -3,6 +3,6 @@ pandas
 scipy
 sklearn
 # Tensorflow 2 has no tensorflow.contrib.factorization.python.ops
-tensorflow==1.15.2
+tensorflow==1.15.4
 torch==1.4.0
 lightfm
