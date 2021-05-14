@@ -29,6 +29,8 @@ object WRMF {
       .appName("WRMF from wrmfzoo")
       .getOrCreate()
 
+    spark.sparkContext.setLogLevel("WARN")
+
     val TRAIN_FILE = args(0)  // "data/lastfm/train.svm"
     val TEST_FILE = args(1)   //"data/lastfm/test.svm"
     val NEGATIVES_FILE = args(2) //"data/lastfm/negatives.svm"

@@ -11,7 +11,7 @@ export OPENBLAS_NUM_THREADS=1
 # setup Spark environment
 mkdir -p tmp
 export SPARK_LOCAL_DIRS=./tmp/
-SPARK_JAR=../../target/scala-2.11/wrmfzoo_2.11-0.0.1.jar
+SPARK_JAR=../../target/scala-2.12/cfzoo_2.12-0.0.1.jar
 sbt package
 
 # first parameter is the command to log pidstat for
@@ -47,8 +47,8 @@ python ${PY_DIR}/parse_pidstat_file.py benferid_implicit_pidstat.log
 log_pidstad_cmd "spark-submit --class WRMF --driver-memory 16g ${SPARK_JAR} train.svm test.svm negatives.svm ranking_sparkml" spark_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py spark_pidstat.log
 
-log_pidstad_cmd "python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf" google_tf_pidstat.log
-python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
+# log_pidstad_cmd "python ${PY_DIR}/google_tf.py train.svm test.svm negatives.svm ranking_google_tf" google_tf_pidstat.log
+# python ${PY_DIR}/parse_pidstat_file.py google_tf_pidstat.log
 
 log_pidstad_cmd "python ${PY_DIR}/lyst_lightfm.py train.svm test.svm negatives.svm ranking_lyst_lightfm" lyst_lightfm_pidstat.log
 python ${PY_DIR}/parse_pidstat_file.py lyst_lightfm_pidstat.log
@@ -61,8 +61,8 @@ echo "benferid_implicit:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_benfred_implicit
 echo "sparkml:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_sparkml
-echo "google_tf:"
-python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
+# echo "google_tf:"
+# python ${PY_DIR}/evaluator.py train.svm test.svm ranking_google_tf
 echo "lyst_lightfm:"
 python ${PY_DIR}/evaluator.py train.svm test.svm ranking_lyst_lightfm
 echo "ncf:"

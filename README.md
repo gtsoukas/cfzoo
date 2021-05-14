@@ -108,5 +108,6 @@ docker run \
 Once all required dependencies are installed or from within the docker container, do:
 ```
 ./movielens.sh > $(date +%Y%m%d%H%M%S)_movielens.log 2>&1
+./movielens_tuned.sh > $(date +%Y%m%d%H%M%S)_movielens_tuned.log 2>&1
 ./lastfm.sh > $(date +%Y%m%d%H%M%S)_lastfm.log 2>&1
 ```

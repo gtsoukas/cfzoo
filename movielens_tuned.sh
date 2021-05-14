@@ -8,12 +8,6 @@ set -e
 PY_DIR=../../src/main/python
 export OPENBLAS_NUM_THREADS=1
 
-# setup Spark environment
-mkdir -p tmp
-export SPARK_LOCAL_DIRS=./tmp/
-SPARK_JAR=../../target/scala-2.11/wrmfzoo_2.11-0.0.1.jar
-sbt package
-
 # first parameter is the command to log pidstat for
 # second parameter is the name of the pidstat logifle to append to
 function log_pidstad_cmd {
