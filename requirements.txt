@@ -2,6 +2,6 @@ implicit
 pandas
 scipy
 sklearn
-tensorflow==2.4.1
+tensorflow==2.6.4
 torch==1.4.0
 lightfm
